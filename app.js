@@ -8,6 +8,10 @@ require('dotenv/config');
 
 const entryRoute = require('./routes/translation-entries.js');
 
+const bodyParser = require('body-parser');
+
+
+app.use(bodyParser.json());
 
 //routes
 app.get('/',(req, res) => {
