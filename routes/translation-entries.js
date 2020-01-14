@@ -6,12 +6,14 @@ const Entry = require('../models/entrySchema.js')
 
 //routes
 router.get('/',async (req, res) => {
-    try{
-        const entries = await Entry.find();
-        res.render('./views/index.ejs',{entries : entries});
-    }catch(err){
-        res.json({message:'err'});
-    }
+    Entry.find()
+    .then(entries => {
+        res.render("index", {entries: entries});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Error occured while getting tasks from database."
+        });
+    });
 
 });
 //create
