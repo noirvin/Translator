@@ -17,6 +17,7 @@ app.use('/', entryRoute);
 app.use(bodyParser.urlencoded({ useUnifiedTopology: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
+app.use(express.static("static"));
 
 //Enable CORS for all HTTP methods
 app.use(function(req, res, next) {

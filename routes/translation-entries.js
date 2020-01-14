@@ -18,19 +18,28 @@ router.get('/',async (req, res) => {
 });
 //create
 router.post('/',async (req, res) => {
-    res.render('./views/index.ejs',{entries : entries});
-    const entry = new Entry({
-        title: req.body.title,
-        binaryCode: req.body.binaryCode,
-        nucleotideSequence: req.body.nucleotideSequence
-
-    });
-    try{
-    const savedEntry = await entry.save();
-    res.json(savedEntry);
-    }catch(err){
-        res.json({message: 'err'});
+    if(!req.body.content) {
+        return res.status(400).send({
+            message: "Entry can't be empty"
+        });
     }
+
+    //add an Entry
+    const entry = new Entry({
+        title: req.body.title || "Untitled Entry",
+        binaryCode: req.binaryCode,
+        nucleotideSequence: req.body.nucleotideSequence
+    });
+
+    // store task in the database
+    entry.save()
+    .then(data => {
+        res.redirect("/");
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Error occured while storing the entry."
+        });
+    });
 });
 //one entry
 router.get('/:entryId', async (req, res) => {

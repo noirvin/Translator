@@ -1,0 +1,7 @@
+body {
+  background-image: "dhelix.jpg";
+  background: radial-gradient(circle, rgba(60,58,98,1) 25%, rgba(15,14,14,1) 77%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 60px;
+}
