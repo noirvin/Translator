@@ -5,7 +5,7 @@ const router = express.Router();
 const Entry = require('../models/entrySchema.js')
 
 //routes
-router.get('/',async (req, res) => {
+router.get('/', (req, res) => {
     Entry.find()
     .then(entries => {
         res.render("index", {entries: entries});
@@ -17,8 +17,8 @@ router.get('/',async (req, res) => {
 
 });
 //create
-router.post('/',async (req, res) => {
-    if(!req.body.content) {
+router.post('/newEntry', (req, res) => {
+    if(!req.body.binaryCode) {
         return res.status(400).send({
             message: "Entry can't be empty"
         });
@@ -27,7 +27,7 @@ router.post('/',async (req, res) => {
     //add an Entry
     const entry = new Entry({
         title: req.body.title || "Untitled Entry",
-        binaryCode: req.binaryCode,
+        binaryCode: req.body.binaryCode,
         nucleotideSequence: req.body.nucleotideSequence
     });
 
