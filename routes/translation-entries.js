@@ -8,7 +8,7 @@ const Entry = require('../models/entrySchema.js')
 router.get('/',async (req, res) => {
     try{
         const entries = await Entry.find();
-        res.json(posts);
+        res.render('./views/index.ejs',{entries : entries});
     }catch(err){
         res.json({message:'err'});
     }
@@ -16,6 +16,7 @@ router.get('/',async (req, res) => {
 });
 //create
 router.post('/',async (req, res) => {
+    res.render('./views/index.ejs',{entries : entries});
     const entry = new Entry({
         title: req.body.title,
         binaryCode: req.body.binaryCode,

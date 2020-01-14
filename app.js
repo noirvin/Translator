@@ -10,23 +10,21 @@ const entryRoute = require('./routes/translation-entries.js');
 
 const bodyParser = require('body-parser');
 
+//middlewares
 
+
+app.use('/', entryRoute);
+app.use(bodyParser.urlencoded({ useUnifiedTopology: true }));
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 
-//routes
-app.get('/',(req, res) => {
-    res.send('test');
 
-});
 
 // server listener
 
 app.listen(3000);
 
-//middlewares
 
-
-app.use('/translation-entries', entryRoute);
 
 //DBConnection
 mongoose.connect(process.env.DB_CONNECTION,
