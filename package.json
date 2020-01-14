@@ -4,8 +4,8 @@
   "description": "machine code to nucleotide sequence translator",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noirvin/Translator.git"
@@ -16,7 +16,7 @@
     "url": "https://github.com/noirvin/Translator/issues"
   },
   "engines": {
-    "node": "12.x"
+    "node": "10.x"
   },
   "homepage": "https://github.com/noirvin/Translator#readme",
   "dependencies": {
