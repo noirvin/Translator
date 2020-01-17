@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 
 
 app.use('/', entryRoute);
-app.use(bodyParser.urlencoded({ useUnifiedTopology: true }));
+//app.use(bodyParser.urlencoded({ useUnifiedTopology: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static("static"));

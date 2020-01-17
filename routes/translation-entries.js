@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         res.render("index", {entries: entries});
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Error occured while getting tasks from database."
+            message: err.message || "Error occured while getting Entries from database."
         });
     });
 
