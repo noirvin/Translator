@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Binary to nucleo</title>
-    <h1>Convert Binary Code to Nucleotidecode or vice versa</h1>
+    <h1>Convert Binary Code to Nucleotidecode</h1>
 
     <link rel='stylesheet' href="https://bootswatch.com/4/superhero/bootstrap.min.css" />
     <link rel="stylesheet" href="styles.css">
@@ -11,7 +11,7 @@
 
 
     <div class="container">
-      <h3 align="right"><a href="/newEntry">Add an Entry</a></h3>
+      <h3 align="right"><a href="/entries/newEntry">Add an Entry</a></h3>
       <h1>Translation Entries</h1>
       <% if(entries.length>0) { %>
       <table>
@@ -22,6 +22,7 @@
             <th> Nucletotide Sequence<th>
           </tr>
         </thead>
+
         <tbody>
 
           <% for(var i=0; i<entries.length;i++) { %>

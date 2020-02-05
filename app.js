@@ -13,11 +13,12 @@ const bodyParser = require('body-parser');
 //middlewares
 
 
-app.use('/', entryRoute);
+
 //app.use(bodyParser.urlencoded({ useUnifiedTopology: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static("static"));
+
 
 //Enable CORS for all HTTP methods
 app.use(function(req, res, next) {
@@ -30,9 +31,18 @@ app.use(function(req, res, next) {
 
 
 
+mongoose.Promise = global.Promise;
+
+ //routes
+
+app.use('/', entryRoute);
+
+
 // server listener
 
 app.listen(3000);
+
+
 
 
 
