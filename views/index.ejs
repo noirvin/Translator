@@ -27,7 +27,7 @@
 
           <% for(var i=0; i<entries.length;i++) { %>
             <tr>
-              <td><a href="/<%= entries[i]._id%>"><%= entries[i].title%></a></td>
+              <td><a href="/entry/<%= entries[i]._id%>"><%= entries[i].title%></a></td>
               <td><%= entries[i].binaryCode%></td>
               <td><%= entries[i].nucleotideSequence%></td>
             </tr>
@@ -37,6 +37,7 @@
       <% } else { %>
         <div>No entries found.</div>
       <% } %>
+
     </div>
   </body>
 </html>

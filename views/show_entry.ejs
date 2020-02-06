@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Entry</title>
+    <link rel='stylesheet' href="https://bootswatch.com/4/superhero/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/">HomePage</a></h3>
+      <h1>Entry</h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td>:</td>
+            <td><%= entry.title %></td>
+          </tr>
+          <tr>
+            <td>BinaryCode</td>
+            <td>:</td>
+            <td><%= entry.binaryCode %></td>
+          </tr>
+          <tr>
+            <td>NucleotideSequence</td>
+            <td>:</td>
+            <td><%= entry.nucleotideSequence %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a href="/entry/<%= entry._id%>/edit">Edit</a></h3>
+      <form action="/entries/delete/<%= entry._id%>/" method="post">
+        <button type="submit">Delete Entry</button>
+      </form>
+    </div>
+  </body>
+</html>
