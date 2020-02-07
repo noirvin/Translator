@@ -27,10 +27,13 @@ router.get('/entries/newEntry', (req, res) => {
 });
 //create
 router.post('/entries', (req, res) => {
+    //function to convert binary representation to string
     function ArrayBufferToBinary(buffer) {
         var uint8 = new Uint8Array(buffer);
         return uint8.reduce((binary, uint8) => binary + uint8.toString(2), "");
     }
+
+    //binary to organic
     let map1 = {
         '00': 'A',
         '01': 'T',
@@ -39,6 +42,7 @@ router.post('/entries', (req, res) => {
 
 
     };
+    //organic to binary
     let map2 = {
         'A': '00',
         'T': '01',
@@ -47,8 +51,9 @@ router.post('/entries', (req, res) => {
     };
 
 
-
+    //extracts binary buffer
     buffer = new Buffer(req.files.binaryCode.data, 'binary');
+    //convert to string
     binary_string = ArrayBufferToBinary(buffer);
     last_index = binary_string.length-1;
 
@@ -60,7 +65,7 @@ router.post('/entries', (req, res) => {
 
         var binary_string = binary_string.toString();
     }
-
+    //encoding process
     nucleotide_Sequence = ""
     for (i = 0; i < binary_string.length-1; i++) {
         if(binary_string[i]== 0 && binary_string[i+1]== 0){
