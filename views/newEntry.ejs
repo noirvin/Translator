@@ -7,22 +7,21 @@
   <body>
     <div class="container">
       <h3><a href="/">Entries List</a></h3>
-      <h1>Add a New Entry</h1>
-      <form action="/entries" method="post">
+      <h1>Add a New Entry by Uploading your file</h1>
+      <form action="/entries" method="post" encType='multipart/form-data'>
         <table>
           <tbody>
-            <tr>
-              <td>Title</td>
-              <td><input type="text" name="title" /></td>
-            </tr>
-            <tr>
-              <td>binaryCode</td>
-               <td><textarea type='text' name="binaryCode"></textarea></td>
-            </tr>
-            <tr>
-              <td>nucleotideSequence</td>
-               <td><textarea type='text' name="nucleotideSequence"></textarea></td>
-            </tr>
+            <div class='form-group'>
+                <tr>
+                    <td><input type='file' name ='binaryCode' id='file' class='btn btn-outline-success btn-block'   accept='image/*,video/*,audio/*,.txt'></td>
+                </tr>
+            </div>
+            <div class='form-group'>
+                <tr>
+                  <td>Title</td>
+                  <td><input type="text" name="title" /></td>
+                </tr>
+            </div>
             <tr>
               <td colspan="2"><button type="submit" name="Submit" value="Save">Save Changes</button></td>
             </tr>

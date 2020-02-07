@@ -10,7 +10,10 @@ const entryRoute = require('./routes/translation-entries.js');
 
 const bodyParser = require('body-parser');
 
+const fileUpload = require('express-fileupload');
+
 var morgan = require('morgan')
+
 
 //middlewares
 morgan("combined")
@@ -19,6 +22,7 @@ morgan("combined")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(fileUpload());
 
 
 app.set('view engine', 'ejs');

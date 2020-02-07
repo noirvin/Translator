@@ -2,10 +2,15 @@ const express = require('express');
 
 const router = express.Router();
 
-const Entry = require('../models/entrySchema.js')
+const Entry = require('../models/entrySchema.js');
+
+
+
+
 
 //routes
 router.get('/', (req, res) => {
+
     Entry.find()
     .then(entries => {
         res.render("index", {entries: entries});
@@ -22,19 +27,61 @@ router.get('/entries/newEntry', (req, res) => {
 });
 //create
 router.post('/entries', (req, res) => {
-    console.log(req.body)
-    //add an Entry
-    if(!req.body.binaryCode) {
-        return res.status(400).send({
-            message: "entry can't be empty"
-        });
+    function ArrayBufferToBinary(buffer) {
+        var uint8 = new Uint8Array(buffer);
+        return uint8.reduce((binary, uint8) => binary + uint8.toString(2), "");
     }
+    let map1 = {
+        '00': 'A',
+        '01': 'T',
+        '10': 'C',
+        '11': 'G'
+
+
+    };
+    let map2 = {
+        'A': '00',
+        'T': '01',
+        'C': '10',
+        'G': '11'
+    };
+
+
+
+    buffer = new Buffer(req.files.binaryCode.data, 'binary');
+    binary_string = ArrayBufferToBinary(buffer);
+    last_index = binary_string.length-1;
+
+    if (binary_string%2>0) {
+
+        var binary_string = binary_string.split();
+
+        delete binary_string[0];
+
+        var binary_string = binary_string.toString();
+    }
+
+    nucleotide_Sequence = ""
+    for (i = 0; i < binary_string.length-1; i++) {
+        if(binary_string[i]== 0 && binary_string[i+1]== 0){
+            nucleotide_Sequence = nucleotide_Sequence+map1['00'];
+
+        }else if(binary_string[i]== 0 && binary_string[i+1]== 1){
+            nucleotide_Sequence = nucleotide_Sequence+map1['01'];
+        }else if(binary_string[i]== 1 && binary_string[i+1]== 0){
+            nucleotide_Sequence = nucleotide_Sequence+map1['10'];
+        }else{
+            nucleotide_Sequence = nucleotide_Sequence+map1['11'];
+        }
+    }
+
 
     //add a task
     const entry = new Entry({
         title: req.body.title || "Untitled task",
-        binaryCode: req.body.binaryCode,
-        nucleotideSequence: req.body.nucleotideSequence
+        binaryCode: ArrayBufferToBinary(buffer),
+        nucleotideSequence: nucleotide_Sequence
+
 
     });
 
