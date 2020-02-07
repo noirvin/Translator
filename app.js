@@ -47,12 +47,12 @@ app.use(function(req, res, next) {
 app.use('/', entryRoute);
 
 //DBConnection
-mongoose.connect(process.env.DB_CONNECTION,
-    { useNewUrlParser: true },
-    () => console.log('connected to DB')
-);
+// mongoose.connect(process.env.DB_CONNECTION,
+//     { useNewUrlParser: true },
+//     () => console.log('connected to DB')
+// );
 
-
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/translator-as', { useNewUrlParser: true });
 // server listener
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 3000);
