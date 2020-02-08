@@ -67,7 +67,7 @@ router.post('/entries', (req, res) => {
     }
     //encoding process
     nucleotide_Sequence = ""
-    for (i = 0; i < binary_string.length-1; i++) {
+    for (i = 0; i < binary_string.length-1; i= i+2) {
         if(binary_string[i]== 0 && binary_string[i+1]== 0){
             nucleotide_Sequence = nucleotide_Sequence+map1['00'];
 
